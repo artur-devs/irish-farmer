@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irish Garden Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>☘️ Irish Garden Planner</h1>
+            <p class="subtitle">Grow your own in the Irish climate</p>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="nav-btn" data-tab="calendar">Crop Calendar</button>
+        <button class="nav-btn" data-tab="garden">My Garden</button>
+        <button class="nav-btn" data-tab="harvest">Harvest Log</button>
+        <button class="nav-btn" data-tab="sufficiency">Self-Sufficiency</button>
+    </nav>
+
+    <main>
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <h2>What to do now</h2>
+            <div class="notifications-container">
+                <div class="notification-section">
+                    <h3>🌱 Ready to Plant</h3>
+                    <div id="plant-now-list" class="task-list"></div>
+                </div>
+                <div class="notification-section">
+                    <h3>🥕 Ready to Harvest</h3>
+                    <div id="harvest-now-list" class="task-list"></div>
+                </div>
+            </div>
+            <div class="quick-stats">
+                <h3>Quick Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="active-crops">0</span>
+                        <span class="stat-label">Active Crops</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="total-harvested">0 kg</span>
+                        <span class="stat-label">Harvested This Year</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="sufficiency-percent">0%</span>
+                        <span class="stat-label">Self-Sufficiency</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crop Calendar Tab -->
+        <section id="calendar" class="tab-content">
+            <h2>Irish Crop Calendar</h2>
+            <div class="calendar-controls">
+                <label for="crop-filter">Filter by type:</label>
+                <select id="crop-filter">
+                    <option value="all">All Crops</option>
+                    <option value="vegetable">Vegetables</option>
+                    <option value="fruit">Fruits</option>
+                    <option value="herb">Herbs</option>
+                    <option value="flower">Flowers</option>
+                </select>
+            </div>
+            <div class="calendar-legend">
+                <span class="legend-item"><span class="legend-color plant"></span> Planting Season</span>
+                <span class="legend-item"><span class="legend-color harvest"></span> Harvest Season</span>
+            </div>
+            <div id="crop-calendar" class="calendar-grid"></div>
+        </section>
+
+        <!-- My Garden Tab -->
+        <section id="garden" class="tab-content">
+            <h2>My Garden</h2>
+            <div class="add-crop-form">
+                <h3>Add New Planting</h3>
+                <form id="add-planting-form">
+                    <div class="form-row">
+                        <label for="crop-select">Crop:</label>
+                        <select id="crop-select" required></select>
+                    </div>
+                    <div class="form-row">
+                        <label for="plant-date">Date Planted:</label>
+                        <input type="date" id="plant-date" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="quantity">Quantity/Area:</label>
+                        <input type="text" id="quantity" placeholder="e.g., 10 plants, 2m row">
+                    </div>
+                    <div class="form-row">
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" rows="2" placeholder="Variety, location, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Add to Garden</button>
+                </form>
+            </div>
+            <div class="current-plantings">
+                <h3>Current Plantings</h3>
+                <div id="plantings-list" class="plantings-grid"></div>
+            </div>
+        </section>
+
+        <!-- Harvest Log Tab -->
+        <section id="harvest" class="tab-content">
+            <h2>Harvest Log</h2>
+            <div class="add-harvest-form">
+                <h3>Log a Harvest</h3>
+                <form id="add-harvest-form">
+                    <div class="form-row">
+                        <label for="harvest-crop">Crop:</label>
+                        <select id="harvest-crop" required></select>
+                    </div>
+                    <div class="form-row">
+                        <label for="harvest-date">Date:</label>
+                        <input type="date" id="harvest-date" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="harvest-weight">Weight (kg):</label>
+                        <input type="number" id="harvest-weight" step="0.1" min="0" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="harvest-notes">Notes:</label>
+                        <textarea id="harvest-notes" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Log Harvest</button>
+                </form>
+            </div>
+            <div class="harvest-history">
+                <h3>Harvest History</h3>
+                <div class="harvest-filter">
+                    <label for="harvest-year">Year:</label>
+                    <select id="harvest-year"></select>
+                </div>
+                <table id="harvest-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Crop</th>
+                            <th>Weight</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="harvest-table-body"></tbody>
+                </table>
+                <div class="harvest-totals">
+                    <p>Total harvested: <strong id="year-total">0 kg</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Self-Sufficiency Tab -->
+        <section id="sufficiency" class="tab-content">
+            <h2>Self-Sufficiency Tracker</h2>
+
+            <div class="household-settings">
+                <h3>Household Settings</h3>
+                <form id="household-form">
+                    <div class="form-row">
+                        <label for="household-size">Number of people:</label>
+                        <input type="number" id="household-size" min="1" value="2">
+                    </div>
+                    <button type="submit" class="btn-secondary">Update</button>
+                </form>
+            </div>
+
+            <div class="sufficiency-dashboard">
+                <div class="sufficiency-card">
+                    <h3>🔥 Calorie Production</h3>
+                    <div class="progress-ring" id="calorie-ring">
+                        <span class="progress-value">0%</span>
+                    </div>
+                    <p class="metric-detail" id="calorie-detail">0 / 0 kcal this year</p>
+                </div>
+
+                <div class="sufficiency-card">
+                    <h3>🥗 Crop Variety</h3>
+                    <div class="progress-ring" id="variety-ring">
+                        <span class="progress-value">0%</span>
+                    </div>
+                    <p class="metric-detail" id="variety-detail">0 / 0 crop types grown</p>
+                </div>
+
+                <div class="sufficiency-card">
+                    <h3>⚖️ Weight Harvested</h3>
+                    <div class="progress-ring" id="weight-ring">
+                        <span class="progress-value">0%</span>
+                    </div>
+                    <p class="metric-detail" id="weight-detail">0 / 0 kg target</p>
+                </div>
+
+                <div class="sufficiency-card">
+                    <h3>💶 Cost Savings</h3>
+                    <div class="progress-ring" id="savings-ring">
+                        <span class="progress-value">€0</span>
+                    </div>
+                    <p class="metric-detail" id="savings-detail">Estimated savings this year</p>
+                </div>
+            </div>
+
+            <div class="sufficiency-breakdown">
+                <h3>Production by Crop</h3>
+                <div id="crop-breakdown" class="breakdown-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Irish Garden Planner - Optimized for the Irish Climate</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+/* Irish Garden Planner - Styles */
+
+:root {
+    --irish-green: #169b62;
+    --irish-green-dark: #0d7a4d;
+    --irish-green-light: #2ecc71;
+    --earth-brown: #8b6914;
+    --soil-dark: #3d2914;
+    --cream: #f5f5dc;
+    --white: #ffffff;
+    --gray-light: #f4f4f4;
+    --gray: #666;
+    --gray-dark: #333;
+    --harvest-orange: #e67e22;
+    --plant-green: #27ae60;
+    --danger: #c0392b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: var(--gray-light);
+    color: var(--gray-dark);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--irish-green) 0%, var(--irish-green-dark) 100%);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+/* Navigation */
+nav {
+    background: var(--white);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--gray);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: var(--gray-light);
+    color: var(--irish-green);
+}
+
+.nav-btn.active {
+    background: var(--irish-green);
+    color: var(--white);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+h2 {
+    color: var(--irish-green-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--irish-green);
+}
+
+h3 {
+    color: var(--gray-dark);
+    margin-bottom: 1rem;
+}
+
+/* Dashboard */
+.notifications-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.notification-section {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.notification-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--irish-green-dark);
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.task-item {
+    padding: 0.75rem 1rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--irish-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item.harvest {
+    border-left-color: var(--harvest-orange);
+}
+
+.task-item .crop-name {
+    font-weight: 600;
+}
+
+.task-item .task-action {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.empty-message {
+    color: var(--gray);
+    font-style: italic;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Quick Stats */
+.quick-stats {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--irish-green);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Calendar */
+.calendar-controls {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.calendar-controls select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.calendar-legend {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-color.plant {
+    background: var(--plant-green);
+}
+
+.legend-color.harvest {
+    background: var(--harvest-orange);
+}
+
+.calendar-grid {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.calendar-row {
+    display: grid;
+    grid-template-columns: 150px repeat(12, 1fr);
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.calendar-row:last-child {
+    border-bottom: none;
+}
+
+.calendar-header {
+    background: var(--irish-green);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.calendar-cell {
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    border-right: 1px solid var(--gray-light);
+}
+
+.calendar-cell:last-child {
+    border-right: none;
+}
+
+.calendar-cell.crop-name {
+    text-align: left;
+    font-weight: 500;
+    background: var(--gray-light);
+}
+
+.calendar-cell.plant {
+    background: rgba(39, 174, 96, 0.3);
+}
+
+.calendar-cell.harvest {
+    background: rgba(230, 126, 34, 0.3);
+}
+
+.calendar-cell.both {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.3) 50%, rgba(230, 126, 34, 0.3) 50%);
+}
+
+/* Forms */
+.add-crop-form,
+.add-harvest-form,
+.household-settings {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: var(--irish-green);
+    box-shadow: 0 0 0 3px rgba(22, 155, 98, 0.1);
+}
+
+.btn-primary {
+    background: var(--irish-green);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--irish-green-dark);
+}
+
+.btn-secondary {
+    background: var(--gray-light);
+    color: var(--gray-dark);
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: var(--white);
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #a93226;
+}
+
+/* Plantings Grid */
+.current-plantings {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.plantings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.planting-card {
+    background: var(--gray-light);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--irish-green);
+}
+
+.planting-card h4 {
+    color: var(--irish-green-dark);
+    margin-bottom: 0.5rem;
+}
+
+.planting-card p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+}
+
+.planting-card .harvest-date {
+    color: var(--harvest-orange);
+    font-weight: 500;
+}
+
+.planting-card .actions {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Harvest Table */
+.harvest-history {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.harvest-filter {
+    margin-bottom: 1rem;
+}
+
+.harvest-filter select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#harvest-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#harvest-table th,
+#harvest-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+#harvest-table th {
+    background: var(--irish-green);
+    color: var(--white);
+}
+
+#harvest-table tr:hover {
+    background: var(--gray-light);
+}
+
+.harvest-totals {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--irish-green);
+    font-size: 1.1rem;
+}
+
+/* Sufficiency Dashboard */
+.sufficiency-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.sufficiency-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.sufficiency-card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--irish-green) 0%, var(--gray-light) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    position: relative;
+}
+
+.progress-ring::before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: var(--white);
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--irish-green);
+}
+
+.metric-detail {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Breakdown List */
+.sufficiency-breakdown {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.breakdown-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: var(--gray-light);
+    border-radius: 6px;
+}
+
+.breakdown-item .crop {
+    font-weight: 500;
+}
+
+.breakdown-item .amount {
+    color: var(--irish-green);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        padding: 0.5rem;
+    }
+
+    .nav-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .calendar-row {
+        grid-template-columns: 100px repeat(12, 1fr);
+    }
+
+    .calendar-cell {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.7rem;
+    }
+}
